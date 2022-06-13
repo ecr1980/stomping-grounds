@@ -1,0 +1,4 @@
+<%= form_with(model: @friendship, url: friendship_path(friendship), method: "patch") do |f| %>
+  <%= f.hidden_field :confirmed, :value => true %>
+  <%= f.submit "Accept?" %>
+<% end %>

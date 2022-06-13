@@ -1,0 +1,83 @@
+<% if user_signed_in? %>
+<div class="main">
+  <div class="friend-bar" data-controller="friends">
+    <% if @requests.length > 0 %>
+      <div class="requests">
+        <div class="friend-bar-header" data-action="click->friends#toggleRequests">Friend Requests:</div>
+          <div data-friends-target="requests">
+          <% @requests.each do |requestor| %>
+            <div class="friend-bar-object" >
+              <%= link_to "#{User.find(requestor.befriendor_id).name}", user_show_path(User.find(requestor.befriendor_id)) %>
+              <%= render "friendships/update", friendship: requestor.id %><%= render "friendships/destroy", friendship: requestor.id %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <% if @pending.length > 0 %>
+      <div class="pending">
+        <div class="friend-bar-header" data-action="click->friends#togglePending">Pending Requests:</div>
+          <div data-friends-target="pending">
+          <% @pending.each do |requestee| %>
+            <div class="friend-bar-object"> 
+              <%= link_to "#{User.find(requestee.befriendee_id).name}", user_show_path(User.find(requestee.befriendee_id)) %>
+              <%= render "friendships/destroy", friendship: requestee.id %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <div class="friends">
+      <div class="friend-bar-header" data-action="click->friends#toggleFriends">Friends:</div>
+        <div data-friends-target="friends">
+        <% @friends.each do |friend| %>
+          <div class="friend-bar-object">
+            <%= link_to "#{friend.name}", user_show_path(friend) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="new-friends">
+      <div class="friend-bar-header" data-action="click->friends#toggleAvailable">New Friends?</div>
+        <div data-friends-target="available">
+        <% @users.each do |user| %>
+          <div class="friend-bar-object">
+            <%= link_to "#{user.name}", user_show_path(user) %>
+            <%= render "friendships/new", user: user %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="new-post" data-controller="post">
+      <div class="post-box">
+        <div class="post" data-post-target="sayingButton" data-action="click->post#showPostForm">
+          Post
+        </div>
+        <div class="photo" data-post-target="photoButton" data-action="click->post#showPhotoForm">
+          Photo
+        </div>
+        <br>
+      </div>
+      <div class="new-saying" data-post-target="saying">
+        <%= render "sayings/new" %>
+      </div>
+      <div class="new-photo" data-post-target="photo">
+        <%= render "photos/new" %>
+      </div>
+    </div>
+    <% @relavent_posts.each do |post|%>
+      <% if post.instance_of? Saying %>
+        <%= render "sayings/show", saying: post %>
+      <% elsif post.instance_of? Photo %>
+        <%= render "photos/show", photo: post %>
+      <% else %>
+        Error: Unknown type of post.
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<% else %>
+  You must sign in before you can do anything.<br>
+<% end %>

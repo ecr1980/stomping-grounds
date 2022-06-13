@@ -1,0 +1,8 @@
+<%= form_with model: @comment do |f| %>
+  <%= f.hidden_field :commentable_id, :value => commentable.id %>
+  <%= f.hidden_field :commentable_type, :value => commentable.class.name %>
+  <%= f.hidden_field :commentor_id, :value => current_user.id %>
+  <br>
+  <%= f.text_area :body, rows: 1, style: "width:50%" %><br>
+  <%= f.submit "Comment" %>
+<% end %>

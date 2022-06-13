@@ -1,0 +1,10 @@
+<div class="saying-form">
+  <%= form_with model: @photo do |f| %>
+    <%= f.hidden_field :user_id, :value => current_user.id%>
+    <%= f.label "Enter your photo URL below" %>
+    <br>
+    <br>
+    <%= f.text_field :photo %><br>
+  <%= f.submit "Post" %>
+  <% end %>
+</div>

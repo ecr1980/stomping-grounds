@@ -1,0 +1,5 @@
+<%= form_with model: @friendship do |f| %>
+  <%= f.hidden_field :befriendor_id, :value => current_user.id %>
+  <%= f.hidden_field :befriendee_id, :value => user.id %>
+  <%= f.submit "Friend?" %>
+<% end %>

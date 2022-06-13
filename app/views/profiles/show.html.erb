@@ -1,0 +1,46 @@
+<div class="profile-container">
+  <div class="profile">
+    <% if @user.profile == nil %>
+      <% if @user == current_user%>
+        <%= render "profiles/new", id: current_user.id %>
+      <% else %>
+        <%= @user.name %> doesn't have a profile yet!
+      <% end %>
+      <br>
+    <% else %>
+      <%= @user.name %>
+      <br>
+      <% if @user.profile.profile_pic == nil %>
+        No profile picture uploaded yet.
+      <% else %>
+        <img src="<%= @user.profile.profile_pic %>">
+      <% end %>
+      <br>
+      <% if @user.profile.about == nil %>
+        No about me information yet.
+      <% else %>
+        <%= @user.profile.about %>
+      <% end %>
+      <br>
+    <% end %>
+    <br>
+    <br>
+    <% if @user == current_user && @user.profile != nil %>
+      <%= render "profiles/edit", id: current_user.id %>
+    <% end %>
+  </div>
+  <div class="profile-history">
+    <%= @user.name %>'s post history:
+  </div>
+    <% @user_posts.each do |post|%>
+      <% if post.instance_of? Saying %>
+        <%= render "sayings/show", saying: post %>
+      <% elsif post.instance_of? Photo %>
+        <%= render "photos/show", photo: post %>
+      <% else %>
+        Error: Unknown type of post.
+      <% end %>
+    <% end %>
+
+    
+</div>

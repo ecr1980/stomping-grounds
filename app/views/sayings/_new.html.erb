@@ -1,0 +1,6 @@
+<div class="saying-form">
+  <%= form_with model: @saying do |f| %>
+    <%= f.text_area :body, rows: 7, style: "width:98%" %><br>
+  <%= f.submit "Post" %>
+  <% end %>
+</div>

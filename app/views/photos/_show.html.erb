@@ -1,0 +1,27 @@
+<div class="photos">
+  <%= link_to "#{User.find(photo.user.id).name}", user_show_path(User.find(photo.user.id)) %> posted:<br>
+  <img src="<%= photo.photo %>"><br><br>
+  <% if current_user.liked_photos.include?(photo)%>
+    <%= render "likes/destroy", like: Like.where("liker_id = #{current_user.id} AND likable_id = #{photo.id}").first %>
+  <% else %>
+    <%= render "likes/new" , likable: photo %>
+  <% end %>
+  <div class="likes">
+  <% if photo.likes.length == 1 %>
+    1 Like
+  <% elsif photo.likes.length > 1 %>
+    <%= photo.likes.length%> likes<br>
+  <% end %>
+  </div>
+  <div class="comments">
+    <div class="new-comment">
+      <%= render "comments/new", commentable: photo %>
+    </div>
+    <% photo.comments.each do |comment|%>
+      <div class="comment-author">
+      <%= link_to "#{User.find(comment.commentor.id).name}", user_show_path(User.find(comment.commentor.id)) %> replied:
+        <div class="comment"><%= comment.body %></div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<%= form_with model: @like do |f| %>
+  <%= f.hidden_field :liker_id, :value => current_user.id %>
+  <%= f.hidden_field :likable_type, :value => likable.class.name %>
+  <%= f.hidden_field :likable_id, :value => likable.id %>
+  <%= f.submit "Like" %>
+<% end %>
