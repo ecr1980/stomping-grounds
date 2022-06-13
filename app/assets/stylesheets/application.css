@@ -144,19 +144,19 @@ body a:visited {
   background-color: rgb(37, 37, 37 );
 }
 
-.profile-container {
+.profile-container, .user-container {
   display: grid;
   grid-template-columns: 2fr 4fr 1fr;
   grid-template-rows: auto;
   row-gap: 20px;
 }
 
-.profile {
+.profile, .user {
   grid-column-start: 2;
   min-height: 200px;
 }
 
-.profile-history {
+.profile-history, .user-content {
   grid-column-start: 2;
   grid-row-start: 2;
 }

@@ -3,6 +3,8 @@ class ProfilesController < ApplicationController
     @user = User.find(params[:id])
     @user_posts = Array.new
     @profile = Profile.new
+    @like = Like.new
+    @comment = Comment.new
 
     if (@user == current_user) && (current_user.profile == nil)
       @profile = Profile.new

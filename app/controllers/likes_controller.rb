@@ -13,13 +13,13 @@ class LikesController < ApplicationController
   def create
     @like = Like.new(like_params)
     @like.save
-    redirect_to root_path
+    redirect_back_or_to @like.likable
   end
 
   def destroy
     @like = Like.find(params[:id])
     @like.destroy
-    redirect_to root_path
+    redirect_back_or_to @like.likable
   end
 
   private
