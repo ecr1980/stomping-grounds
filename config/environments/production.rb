@@ -82,6 +82,15 @@ Rails.application.configure do
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
+  ActionMailer::Base.smtp_settings = {
+    :authentication => :plain,
+    :address => ENV['MAILGUN_SMTP_SERVER']
+    :port => ENV['MAILGUN_SMTP_PORT']
+    :user_name => ENV['MAILGUN_SMTP_LOGIN']
+    :password => ENV['MAILGUN_SMTP_PASSWORD']
+    :enable_starttls_auto => true
+  }
+
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
