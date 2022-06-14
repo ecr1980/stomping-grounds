@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'app265547433@heroku.com'
+  default from: 'postmaster@sandboxb70307f57f694adf8b79790ad35d445d.mailgun.org'
 
   def welcome_email
     @user = params[:user]
