@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   get "profiles/show/:id" => "profiles#show", as: "user_show"
   put "profiles/" => "profiles#update"
-  resources :friendships, :sayings, :likes, :comments, :profiles, :photos, :home
+  resources :users, :friendships, :sayings, :likes, :comments, :profiles, :photos, :home
   root "home#index"
   post "profiles/show/:id" => "profiles#create"
 

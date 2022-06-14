@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'notyetmadeemailaddress@zombo.com'
+  default from: 'app265547433@heroku.com'
 
   def welcome_email
     @user = params[:user]
