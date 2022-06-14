@@ -3,6 +3,7 @@
     <% if @user.profile == nil %>
       <% if @user == current_user%>
         <%= render "profiles/new", id: current_user.id %>
+        <%= link_to "Edit Account Details", edit_user_registration_path %>
       <% else %>
         <%= @user.name %> doesn't have a profile yet!
       <% end %>
@@ -27,6 +28,7 @@
     <br>
     <% if @user == current_user && @user.profile != nil %>
       <%= render "profiles/edit", id: current_user.id %>
+      <%= link_to "Edit Account Details", edit_user_registration_path %>
     <% end %>
   </div>
   <div class="profile-history">
