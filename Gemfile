@@ -4,6 +4,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.0.3"
 # For user authentication
 gem "devise"
+gem "omniauth"
+gem "omniauth-facebook"
+gem "omniauth-rails_csrf_protection"
+gem 'figaro'
+
+# To test mailer in developement:
+gem "letter_opener", group: :development
 
 # Replace IRB wtih Pry for the console.
 gem "pry-rails"

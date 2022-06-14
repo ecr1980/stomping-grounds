@@ -32,7 +32,7 @@ class HomeController < ApplicationController
         end
       end
 
-      current_user.friends.each do |friend|
+      @friends.each do |friend|
         friend.sayings.each do |saying|
           @relavent_posts << saying
         end

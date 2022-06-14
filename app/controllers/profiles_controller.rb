@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new
     @like = Like.new
     @comment = Comment.new
+    
 
     if (@user == current_user) && (current_user.profile == nil)
       @profile = Profile.new
